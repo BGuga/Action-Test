@@ -20,35 +20,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 리포지토리 체크아웃
+      - name: step1
         uses: actions/checkout@v3
 
-      - name: 자바 설치
+      - name: step2
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: 'zulu'
 
-      - name: gradlew 권한 부여
+      - name: step3
         run: chmod +x gradlew
 
-      - name: Gradle build
+      - name: step4
         run: ./gradlew build
 
-      - name: 테스트 결과 PR에 커멘트 등록
+      - name: step5
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
           files: '**/build/test-results/test/TEST-*.xml'
 
-      - name: 테스트 실패 Check 코멘트 등록
+      - name: step6
         uses: mikepenz/action-junit-report@v3
         if: always()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
           token: ${{ github.token }}
 
-      - name: 테스트 실패 시 Merging 방지
+      - name: step7
         run: |
           # 테스트 결과 XML 파일에서 실패 테스트의 수를 파싱하여 변수에 저장
           failed_tests=$(grep -c "<failure" backend/build/test-results/test/TEST-*.xml || true)
