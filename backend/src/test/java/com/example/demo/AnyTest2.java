@@ -17,7 +17,7 @@ public class AnyTest2 {
 
     @Test
     public void anyTest(){
-        assertThat(1).isZero();
+        assertThat(1).isEqualTo(10);
 
     }
 }
