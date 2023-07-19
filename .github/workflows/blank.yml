@@ -31,7 +31,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Gradle build
-        run: ./gradlew build
+        run: ./gradlew build --continue
 
       - name: 테스트 결과 PR에 커멘트 등록
         uses: EnricoMi/publish-unit-test-result-action@v1
