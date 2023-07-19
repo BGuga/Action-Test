@@ -9,5 +9,6 @@ public class AnyTest {
     @Test
     void test() {
         assertThat(1).isOne();
+
     }
 }
