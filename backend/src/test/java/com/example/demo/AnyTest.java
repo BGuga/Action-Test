@@ -8,7 +8,7 @@ public class AnyTest {
 
     @Test
     void test() {
-        assertThat(1).isOne();
+        assertThat(1).isZero();
 
     }
 }
