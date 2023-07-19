@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
-    paths: 'backend/**'
+    paths:
+      - 'backend/**'
   pull_request:
     branches:
       - main
-    paths: 'backend/**'
+    paths:
+      - 'backend/**'
 
 defaults:
   run:
@@ -45,3 +47,14 @@ jobs:
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
           token: ${{ github.token }}
+
+      - name: 테스트 실패 시 Merging 방지
+        run: |
+          # 테스트 결과 XML 파일에서 실패 테스트의 수를 파싱하여 변수에 저장
+          failed_tests=$(grep -c "<failure" backend/build/test-results/test/TEST-*.xml || true)
+
+          # 실패 테스트가 있는 경우, Merging을 방지하고 오류 메시지 출력
+          if [[ "$failed_tests" -gt 0 ]]; then
+            echo "테스트 실패로 인해 Merging이 거부되었습니다."
+            exit 1
+          fi
