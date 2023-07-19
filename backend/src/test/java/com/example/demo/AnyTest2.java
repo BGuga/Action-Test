@@ -18,5 +18,6 @@ public class AnyTest2 {
     @Test
     public void anyTest(){
         assertThat(1).isZero();
+
     }
 }
