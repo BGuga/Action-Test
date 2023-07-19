@@ -15,7 +15,7 @@ defaults:
     working-directory: backend
 
 jobs:
-  test:
+  checkTest:
     runs-on: ubuntu-latest
     steps:
       - name: 리포지토리 체크아웃
