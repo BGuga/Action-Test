@@ -12,7 +12,7 @@ jobs:
         id: all-label
         uses: buildsville/assign-reviewer-by-label@v1
         with:
-          token: "${{ secret.GITHUB_TOKEN }}"
+          token: "${{ secrets.GITHUB_TOKEN }}"
           labels: '[ "ALL" ]'
           reviewers: '["BGuga"]'
           remove-when-no-label: "true"
